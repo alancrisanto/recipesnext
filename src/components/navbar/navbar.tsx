@@ -6,15 +6,18 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { Container, Button, Form, Nav, Navbar, Offcanvas, InputGroup } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
+import NavLinks from "./links";
+import { useSession, signOut } from "next-auth/react";
 
 function NavbarComponent() {
-	const expand = "lg"; // Definimos 'expand' como "sm" para mostrar solo un Navbar
+	const expand = "lg";
+	const { data: session } = useSession();
 
 	return (
 		<>
 			<Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
 				<Container fluid>
-					<Link href="#">
+					<Link href="/">
 						<Image src="/logo-coolinary.png" alt="logo coolinary" width={150} height={20} />
 					</Link>
 					<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -28,36 +31,47 @@ function NavbarComponent() {
 						</Offcanvas.Header>
 						<Offcanvas.Body>
 							<Nav className="justify-content-end flex-grow-1 pe-3">
-								<Nav.Link href="#action1">Home</Nav.Link>
-								<Nav.Link href="#action2">Recipes</Nav.Link>
-								<Nav.Link href="#action2">About Us</Nav.Link>
+								<NavLinks />
 							</Nav>
-							<Form className="d-flex flex-column flex-lg-row gap-3 align-items-center">
-								<InputGroup>
-									<Form.Control
-										type="text"
-										placeholder="Search"
-										aria-label="Input group example"
-										aria-describedby="btnGroupAddon"
-									/>
-									<Button variant="outline-success">
-										<i className="bi bi-search"></i>
-									</Button>
-								</InputGroup>
+							<div className="d-flex flex-column flex-lg-row gap-3 align-items-center">
 								<div className="d-flex w-100 justify-content-start justify-content-lg-end align-items-center  gap-2">
-									<Link href="#">
-										<Button variant="">
-											<i className="bi bi-cart2 fs-5"></i>
-										</Button>
-									</Link>
-									<Link href="#">
-										<Button variant="outline-dark">Login</Button>
-									</Link>
-									<Link href="#">
-										<Button variant="success">Sign Up</Button>
-									</Link>
+									{session?.user ? (
+										<>
+											<p>{session.user.name}</p>
+											{session.user.image && (
+												<Image
+													src={session.user.image}
+													height={38}
+													width={38}
+													alt="avatar google account"
+													className="rounded-circle border border-2 border-primary"
+												/>
+											)}
+											<Link href="/login">
+												<Button
+													variant="primary"
+													onClick={() =>
+														signOut({
+															callbackUrl: "/",
+														})
+													}
+												>
+													Log Out
+												</Button>
+											</Link>
+										</>
+									) : (
+										<>
+											<Link href="/login">
+												<Button variant="outline-dark">Login</Button>
+											</Link>
+											<Link href="/signup">
+												<Button variant="success">Sign Up</Button>
+											</Link>
+										</>
+									)}
 								</div>
-							</Form>
+							</div>
 						</Offcanvas.Body>
 					</Navbar.Offcanvas>
 				</Container>
