@@ -15,7 +15,7 @@ function NavbarComponent() {
 
 	return (
 		<>
-			<Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
+			<Navbar key={expand} expand={expand} className="bg-body-tertiary border-bottom">
 				<Container fluid>
 					<Link href="/">
 						<Image src="/logo-coolinary.png" alt="logo coolinary" width={150} height={20} />

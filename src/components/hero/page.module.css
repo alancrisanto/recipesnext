@@ -1,0 +1,13 @@
+.hero {
+  background-image: url(../../../public/background_food.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 350px;
+}
+
+.button {
+  background-color: #c3f2cc;
+  border: #c3f2cc;
+  color: #08A045;
+}
