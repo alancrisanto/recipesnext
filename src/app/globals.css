@@ -14,6 +14,8 @@
 
 body {
   min-height: 100vh;
+  max-width: 1960px;
+  margin: 0 auto !important;
 }
 
 p {

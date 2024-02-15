@@ -3,11 +3,13 @@ import { Button } from "react-bootstrap";
 
 function Hero() {
 	return (
-		<div className={styles.hero}>
+		<div className={`py-4 px-md-5 ${styles.hero}`}>
 			<Button variant={`success fw-semibold ${styles.button}`}>Our Especial Offer</Button>
 			<div className="py-4">
-				<h1>Bread Toast Avocado Especial</h1>
-				<h2 className="fs-5 fw-light ">
+				<h1 className={styles.title}>
+					Bread Toast <br /> Avocado Especial
+				</h1>
+				<h2 className={`fw-light ${styles.subTitle}`}>
 					Bread with avocado and egg is our special menu that loved by everyone who starving for tasty healthy food
 				</h2>
 			</div>

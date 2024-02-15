@@ -1,13 +1,44 @@
 .hero {
-  background-image: url(../../../public/background_food.jpg);
-  background-position: center;
+  background-image: url(../../../public/rect8.jpg);
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 350px;
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
 }
 
 .button {
   background-color: #c3f2cc;
   border: #c3f2cc;
   color: #08A045;
+}
+
+
+.subTitle {
+  font-size: clamp(1.25rem, 1.8vw, 2rem);
+}
+
+
+
+
+
+
+
+@media screen and (min-width: 760px) {
+  .hero {
+    background-size: contain;
+  }
+
+  .subTitle {
+    max-width: 50%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero {
+    background-size: cover;
+  }
 }
