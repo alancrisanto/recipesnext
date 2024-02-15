@@ -5,7 +5,7 @@ function Features() {
 		<div className="features-container">
 			<div className="feature-title text-center">
 				<p className="fs-5 text-success py-3 fw-bold text-uppercase">Features</p>
-				<h3 className="pb-5">Ger a many of interesting features</h3>
+				<h3 className="pb-5">Get a many of interesting features</h3>
 			</div>
 			<div className="cards-container d-flex flex-wrap gap-3 justify-content-center align-items-center">
 				<FeaturesCards

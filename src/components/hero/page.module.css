@@ -1,13 +1,9 @@
 .hero {
   background-image: url(../../../public/rect8.jpg);
-  background-position: right;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 350px;
-}
-
-.title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
 }
 
 .button {
@@ -16,29 +12,42 @@
   color: #08A045;
 }
 
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+}
 
 .subTitle {
   font-size: clamp(1.25rem, 1.8vw, 2rem);
 }
 
-
-
-
-
+.heroGlass {
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
 
 
 @media screen and (min-width: 760px) {
   .hero {
-    background-size: contain;
+    background-position: bottom;
   }
 
   .subTitle {
     max-width: 50%;
   }
+
+  .heroGlass {
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: none;
+  }
+
 }
 
 @media screen and (min-width: 1024px) {
   .hero {
-    background-size: cover;
+    background-position: right;
   }
 }
