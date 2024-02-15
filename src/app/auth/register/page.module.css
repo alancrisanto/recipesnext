@@ -1,0 +1,9 @@
+.formCheckbox label {
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 1280px) {
+  .formLogin {
+    max-width: 75%;
+  }
+}
