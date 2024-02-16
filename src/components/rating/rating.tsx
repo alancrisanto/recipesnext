@@ -26,7 +26,7 @@ function RatingComponent() {
 							size={20}
 							color={ratingValue <= (hover || rating || 0) ? "#ffcd00" : "#e4e5e9"}
 							onMouseEnter={() => setHover(ratingValue)}
-							onMouseOut={() => {}}
+							onMouseOut={() => setHover(null)}
 						/>
 					</label>
 				);

@@ -17,8 +17,15 @@ function RecipesContainer() {
 				<FilterButtons title="Drinks" icon={MdLocalDrink} />
 				<FilterButtons title="More Menu" icon={BiSolidDish} />
 			</div>
-			<div className={`cardsContainer`}>
+			<div className={`cardsContainer d-flex flex-wrap justify-content-center align-items-center  gap-3`}>
 				<RecipesCards recImg="/dish1.png" />
+				<RecipesCards recImg="/dish2.png" />
+				<RecipesCards recImg="/dish3.png" />
+				<RecipesCards recImg="/dish4.png" />
+				<RecipesCards recImg="/dish5.png" />
+				<RecipesCards recImg="/dish6.png" />
+				<RecipesCards recImg="/dish7.png" />
+				<RecipesCards recImg="/dish8.png" />
 			</div>
 		</div>
 	);
