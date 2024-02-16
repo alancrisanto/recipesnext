@@ -1,4 +1,5 @@
 import FilterButtons from "../filterButtons/filterButtons";
+import RecipesCards from "../recipesCards/recipesCards";
 import { PiHamburger } from "react-icons/pi";
 import { GiSteak } from "react-icons/gi";
 import { LuSalad } from "react-icons/lu";
@@ -15,6 +16,9 @@ function RecipesContainer() {
 				<FilterButtons title="Salads" icon={LuSalad} />
 				<FilterButtons title="Drinks" icon={MdLocalDrink} />
 				<FilterButtons title="More Menu" icon={BiSolidDish} />
+			</div>
+			<div className={`cardsContainer`}>
+				<RecipesCards recImg="/dish1.png" />
 			</div>
 		</div>
 	);
