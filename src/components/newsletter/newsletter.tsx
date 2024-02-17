@@ -8,7 +8,7 @@ import Image from "next/image";
 function NewsletterComponent() {
 	return (
 		<div className={`mt-5 py-5 px-4 mx-md-4 bg-success-subtle d-flex`}>
-			<div className={`newDesc col-7 col-lg-8`}>
+			<div className={`col-md-7 col-lg-8`}>
 				<h5 className={`${styles.textH5} pb-3`}>NEWSLETTER</h5>
 				<h3>Suscribe to our newsletter</h3>
 				<div>

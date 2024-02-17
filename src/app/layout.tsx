@@ -4,6 +4,7 @@ import "./globals.css";
 import NavbarComponent from "../components/navbar/navbar";
 const roboto = Roboto_Slab({ subsets: ["latin"] });
 import { Providers } from "./Providers";
+import Footer from "@/components/footer/footer";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -21,6 +22,7 @@ export default function RootLayout({
 				<Providers>
 					<NavbarComponent />
 					{children}
+					<Footer />
 				</Providers>
 			</body>
 		</html>

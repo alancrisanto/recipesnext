@@ -47,7 +47,7 @@ function NavbarComponent() {
 													className="rounded-circle border border-2 border-primary"
 												/>
 											)}
-											<Link href="/login">
+											<Link href="/auth/login">
 												<Button
 													variant="primary"
 													onClick={() =>
@@ -62,10 +62,10 @@ function NavbarComponent() {
 										</>
 									) : (
 										<>
-											<Link href="/login">
+											<Link href="/auth/login">
 												<Button variant="outline-dark">Login</Button>
 											</Link>
-											<Link href="/signup">
+											<Link href="/auth/register">
 												<Button variant="success">Sign Up</Button>
 											</Link>
 										</>
