@@ -26,8 +26,12 @@ function RecipesContainer() {
 				/>
 				<RecipesCards recImg="/dish3.png" title="Beef Roulade" desc="Lorem ipsum dolor sit amet consectetur." />
 				<RecipesCards recImg="/dish4.png" title="Greek Salad" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards recImg="/dish5.png" title="Italian Spaguetti" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards recImg="/dish6.png" title="Spagetti and Chicken" desc="Lorem ipsum dolor sit amet consectetur." />
+				<RecipesCards recImg="/dish5.png" title="Italian Spaghetti" desc="Lorem ipsum dolor sit amet consectetur." />
+				<RecipesCards
+					recImg="/dish6.png"
+					title="Spaghetti and Chicken"
+					desc="Lorem ipsum dolor sit amet consectetur."
+				/>
 				<RecipesCards recImg="/dish7.png" title="Peruvian Ceviche" desc="Lorem ipsum dolor sit amet consectetur." />
 				<RecipesCards
 					recImg="/dish8.png"
