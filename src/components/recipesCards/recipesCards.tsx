@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaBookmark } from "react-icons/fa";
 import styles from "./page.module.css";
 import RatingComponent from "../rating/rating";
+import Link from "next/link";
 
 function RecipesCards({ recImg, title, desc }: { recImg: string; title: string; desc: string }) {
 	return (
@@ -10,9 +11,11 @@ function RecipesCards({ recImg, title, desc }: { recImg: string; title: string; 
 			<div className={`d-flex flex-column align-items-center ${styles.imgDiv}`}>
 				<Image src={recImg} width={220} height={200} alt="recipe image" sizes="100vw" />
 			</div>
-			<div className={`card-body text-center`}>
+			<div className={`card-body text-center d-flex flex-column justify-content-center align-items-center`}>
 				<RatingComponent />
-				<h4 className="mt-2">{title}</h4>
+				<Link href="/products" className="text-dark">
+					<h4 className="mt-2">{title}</h4>
+				</Link>
 				<p>{desc}</p>
 			</div>
 		</div>

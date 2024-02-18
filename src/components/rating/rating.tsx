@@ -9,7 +9,7 @@ function RatingComponent() {
 	const [hover, setHover] = useState<number | null>(null);
 
 	return (
-		<div className="d-flex justify-content-center gap-1">
+		<div className="d-flex gap-1">
 			{[...Array(5)].map((_, index) => {
 				const ratingValue = index + 1;
 				return (
