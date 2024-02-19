@@ -15,9 +15,15 @@ function RecipeDescription() {
 					<Image src="/dish4.png" width={300} height={300} alt="lorem ipsum" />
 				</div>
 				<div className={`recpDesc d-flex flex-column`}>
-					<Button variant="success" className={`fw-semibold ${styles.button} align-self-start`}>
-						Vegetarian
-					</Button>
+					<div className={`d-flex gap-2 `}>
+						<Button variant="success" className={`fw-semibold ${styles.button} align-self-start`} disabled>
+							Vegetarian
+						</Button>
+						<Button variant="outline-danger" className={`fw-semibold 	 align-self-start`} disabled>
+							Salad
+						</Button>
+					</div>
+
 					<h3 className="pt-3">Peruvian Lomo Saltado</h3>
 					<RatingComponent />
 					<div className={`recpInfo d-flex flex-wrap py-3 gap-2 align-items-center`}>
@@ -38,9 +44,23 @@ function RecipeDescription() {
 							<p>Beginner</p>
 						</div>
 					</div>
+					<div className={`d-flex gap-2 flex-wrap pb-3`}>
+						<div className={`d-flex gap-2 align-items-center border`}>
+							<p className="p-2 bg-warning-subtle">Calories</p>
+							<p className="p-2">329</p>
+						</div>
+						<div className={`d-flex gap-2 align-items-center border`}>
+							<p className="p-2 bg-primary-subtle">Protein</p>
+							<p className="p-2">22.5g</p>
+						</div>
+						<div className={`d-flex gap-2 align-items-center border`}>
+							<p className="p-2 bg-danger-subtle">Fat</p>
+							<p className="p-2">2g</p>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div className={``}>
+			<div className={`ms-md-5`}>
 				<h4>Ingredients</h4>
 				<ul>
 					<li> 2 cups flour (125 g)</li>
