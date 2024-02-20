@@ -33,7 +33,7 @@ model Recipe {
   picture      String
   foodInfo     Json[]
   cousine_type String
-  meal_type    String
+  meal_type    mealType
   level        Level
   category     Category
   comments     Comment[]
@@ -60,6 +60,12 @@ enum Category {
   Meats
   Drinks
   Traditional
+}
+
+enum mealType {
+  Breakfast
+  Lunch
+  Dinner
 }
 
 enum Level {
