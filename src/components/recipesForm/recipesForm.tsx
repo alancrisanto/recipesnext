@@ -9,7 +9,7 @@ import { FaTypo3 } from "react-icons/fa";
 
 function FormRecipe() {
 	return (
-		<Form className="rounded-3">
+		<Form className="rounded-3 bg-body-secondary px-3 py-3 p-md-4">
 			<Form.Group className="mb-3" controlId="recipeTitle">
 				<Form.Label>Recipe Title</Form.Label>
 				<Form.Control type="text" placeholder="Crepes with Forest" />
@@ -25,7 +25,7 @@ function FormRecipe() {
 			</Form.Group>
 			<Form.Group className="mb-3" controlId="mealType">
 				<Form.Label>Meal Type</Form.Label>
-				<div className="d-flex gap-2">
+				<div className="d-flex flex-wrap gap-2">
 					<Form.Check // prettier-ignore
 						type="checkbox"
 						id="breakfast"
@@ -45,7 +45,7 @@ function FormRecipe() {
 			</Form.Group>
 			<Form.Group className="mb-3" controlId="level">
 				<Form.Label>Level</Form.Label>
-				<div className="d-flex gap-2">
+				<div className="d-flex flex-wrap gap-2">
 					<Form.Check // prettier-ignore
 						type="radio"
 						name="level"
