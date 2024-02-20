@@ -22,7 +22,6 @@ function SignUp() {
 		const lastName = e.target[1].value;
 		const email = e.target[2].value;
 		const password = e.target[3].value;
-		console.log(name, lastName, email, password);
 
 		try {
 			const res = await fetch("/api/auth/register", {
