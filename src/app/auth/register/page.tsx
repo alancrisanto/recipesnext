@@ -10,7 +10,6 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { resolve } from "path";
 import { useForm } from "react-hook-form";
 
 function SignUp() {
@@ -31,8 +30,6 @@ function SignUp() {
 	const router = useRouter();
 
 	const onSubmitForm = handleSubmit(async (data) => {
-		console.log(data);
-
 		try {
 			const res = await fetch("/api/auth/register", {
 				method: "POST",
@@ -45,7 +42,7 @@ function SignUp() {
 			res.status == 200 && router.push("/auth/login?success=Account has been created");
 		} catch (error) {
 			console.log(error);
-			setErr(true);
+			setErr(error as any);
 		}
 	});
 	return (
@@ -56,6 +53,7 @@ function SignUp() {
 				</div>
 				<div className="login-form col-md-6 px-md-5">
 					<h3 className="text-center mt-4">Get&#39;s started</h3>
+					{err && <p className="text-danger text-center py-4">{err}</p>}
 					<Form className={`d-flex flex-column my-5 mx-xl-auto  ${styles.formLogin}`} onSubmit={onSubmitForm}>
 						<Row className="mb-3">
 							<Form.Group className="mb-3 mb-lg-0" as={Col} xs={12} lg={6} controlId="name">
@@ -132,7 +130,7 @@ function SignUp() {
 							Register
 						</Button>
 					</Form>
-					{err && <p className="text-danger text-center pb-4">Something went wrong</p>}
+
 					<div className="Login-google d-flex justify-content-center ">
 						<Button variant="outline-secondary" className="d-flex align-items-center justify-content-center">
 							<FcGoogle className="me-2" size={24} /> Register with Google

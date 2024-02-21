@@ -127,3 +127,24 @@ model RecipeLike {
 
   @@id([userId, recipeId])
 }
+
+
+
+					// if (userFound) {
+					// 	if (credentials?.password) {
+					// 		const isPasswordCorrect = await bcrypt.compare(credentials.password, userFound.password);
+					// 		if (isPasswordCorrect) {
+					// 			return {
+					// 				id: userFound.id,
+					// 				name: userFound.username,
+					// 				email: userFound.email,
+					// 			} as User;
+					// 		} else {
+					// 			throw new Error("Wrong Credentials");
+					// 		}
+					// 	} else {
+					// 		throw new Error("Password not found");
+					// 	}
+					// } else {
+					// 	throw new Error("User not found");
+					// }
