@@ -18,26 +18,7 @@ function RecipesContainer() {
 				<FilterButtons title="More Menu" icon={BiSolidDish} />
 			</div>
 			<div className={`cardsContainer d-flex flex-wrap justify-content-center gap-3`}>
-				<RecipesCards recImg="/dish1.png" title="Chicken Breast Stick" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards
-					recImg="/dish2.png"
-					title="Potato Fritters Sour Cream"
-					desc="Lorem ipsum dolor sit amet consectetur."
-				/>
-				<RecipesCards recImg="/dish3.png" title="Beef Roulade" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards recImg="/dish4.png" title="Greek Salad" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards recImg="/dish5.png" title="Italian Spaghetti" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards
-					recImg="/dish6.png"
-					title="Spaghetti and Chicken"
-					desc="Lorem ipsum dolor sit amet consectetur."
-				/>
-				<RecipesCards recImg="/dish7.png" title="Peruvian Ceviche" desc="Lorem ipsum dolor sit amet consectetur." />
-				<RecipesCards
-					recImg="/dish8.png"
-					title="Peruvian Lomo Saltado"
-					desc="Lorem ipsum dolor sit amet consectetur."
-				/>
+				<RecipesCards />
 			</div>
 		</div>
 	);

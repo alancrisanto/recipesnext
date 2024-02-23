@@ -10,40 +10,41 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { resolve } from "path";
+import { useForm } from "react-hook-form";
 
 function SignUp() {
+	type FormData = {
+		username: string;
+		lastname: string;
+		email: string;
+		password: string;
+	};
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormData>();
+
 	const [err, setErr] = useState(false);
 	const router = useRouter();
 
-	const handlesubmit = async (e: any) => {
-		e.preventDefault();
-		const name = e.target[0].value;
-		const lastName = e.target[1].value;
-		const email = e.target[2].value;
-		const password = e.target[3].value;
-		console.log(name, lastName, email, password);
-
+	const onSubmitForm = handleSubmit(async (data) => {
 		try {
 			const res = await fetch("/api/auth/register", {
 				method: "POST",
+				body: JSON.stringify(data),
 				headers: {
 					"content-type": "application/json",
 				},
-				body: JSON.stringify({
-					name,
-					lastName,
-					email,
-					password,
-				}),
 			});
-			res.status == 201 && router.push("/login?success=Account has been created");
+
+			res.status == 200 && router.push("/auth/login?success=Account has been created");
 		} catch (error) {
 			console.log(error);
-			setErr(true);
+			setErr(error as any);
 		}
-	};
-
+	});
 	return (
 		<div className="login-signup container-xxl p-4 p-md-0">
 			<div className="login-container row m-0">
@@ -52,27 +53,68 @@ function SignUp() {
 				</div>
 				<div className="login-form col-md-6 px-md-5">
 					<h3 className="text-center mt-4">Get&#39;s started</h3>
-					<Form className={`d-flex flex-column my-5 mx-xl-auto  ${styles.formLogin}`} onSubmit={handlesubmit}>
+					{err && <p className="text-danger text-center py-4">{err}</p>}
+					<Form className={`d-flex flex-column my-5 mx-xl-auto  ${styles.formLogin}`} onSubmit={onSubmitForm}>
 						<Row className="mb-3">
 							<Form.Group className="mb-3 mb-lg-0" as={Col} xs={12} lg={6} controlId="name">
 								<Form.Label>First Name</Form.Label>
-								<Form.Control type="text" placeholder="David" required />
+								<Form.Control
+									type="text"
+									placeholder="David"
+									{...register("username", {
+										required: {
+											value: true,
+											message: "Name is required",
+										},
+									})}
+								/>
+								<span className="text-danger">{errors.username?.message}</span>
 							</Form.Group>
 
 							<Form.Group as={Col} xs={12} lg={6} controlId="lastName">
 								<Form.Label>Last Name</Form.Label>
-								<Form.Control type="text" placeholder="Clerk" required />
+								<Form.Control
+									type="text"
+									placeholder="Clerk"
+									{...register("lastname", {
+										required: {
+											value: true,
+											message: "Last name  is required",
+										},
+									})}
+								/>
+								<span className="text-danger">{errors.lastname?.message}</span>
 							</Form.Group>
 						</Row>
 
 						<Form.Group className="mb-3" controlId="usermail">
 							<Form.Label>Email Address</Form.Label>
-							<Form.Control type="email" placeholder="example@domain.com" name="email" required />
+							<Form.Control
+								type="email"
+								placeholder="example@domain.com"
+								{...register("email", {
+									required: {
+										value: true,
+										message: "Email is required",
+									},
+								})}
+							/>
+							<span className="text-danger">{errors.email?.message}</span>
 						</Form.Group>
 
 						<Form.Group className="mb-3" controlId="password">
 							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" placeholder="Enter password here" required />
+							<Form.Control
+								type="password"
+								placeholder="Enter password here"
+								{...register("password", {
+									required: {
+										value: true,
+										message: "Password is required",
+									},
+								})}
+							/>
+							<span className="text-danger">{errors.password?.message}</span>
 						</Form.Group>
 
 						<Form.Group className="mb-3" id="formGridCheckbox">
@@ -80,6 +122,7 @@ function SignUp() {
 								className={styles.formCheckbox}
 								type="checkbox"
 								label="I agree to Terms of Service & Privacy Policy"
+								required
 							/>
 						</Form.Group>
 
@@ -87,7 +130,7 @@ function SignUp() {
 							Register
 						</Button>
 					</Form>
-					{err && "Something went wrong"}
+
 					<div className="Login-google d-flex justify-content-center ">
 						<Button variant="outline-secondary" className="d-flex align-items-center justify-content-center">
 							<FcGoogle className="me-2" size={24} /> Register with Google
