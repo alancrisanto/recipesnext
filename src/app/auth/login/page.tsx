@@ -74,16 +74,7 @@ function Login() {
 						/>
 						<span className="text-danger">{errors.password?.message}</span>
 					</Form.Group>
-
-					<Form.Group className="mb-3" id="formGridCheckbox">
-						<Form.Check
-							className={styles.formCheckbox}
-							type="checkbox"
-							label="I agree to Terms of Service & Privacy Policy"
-						/>
-					</Form.Group>
-
-					<Button variant="primary" type="submit">
+					<Button variant="primary" type="submit" className="mt-3">
 						Login
 					</Button>
 				</Form>

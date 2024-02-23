@@ -6,7 +6,18 @@ import { LuSalad } from "react-icons/lu";
 import { MdLocalDrink } from "react-icons/md";
 import { BiSolidDish } from "react-icons/bi";
 
+// async function getData() {
+// 	const res = await fetch("/api/products");
+// 	if (!res.ok) {
+// 		// This will activate the closest `error.js` Error Boundary
+// 		throw new Error("Failed to fetch data");
+// 	}
+// 	return res.json();
+// }
+
 function RecipesContainer() {
+	// const data = getData();
+	// console.log("data", data);
 	return (
 		<div className="mt-5 pt-5">
 			<h3 className="text-center">Our Speciality Cousine</h3>
