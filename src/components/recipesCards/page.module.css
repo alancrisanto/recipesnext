@@ -1,0 +1,19 @@
+.card {
+  max-width: 280px;
+  -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+  -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+  box-shadow: 3px 3px 10px 3px #dddddd;
+}
+
+.imgDiv {
+  min-height: 200px;
+}
+
+.bookmark {
+  cursor: pointer;
+  color: #222B3C;
+}
+
+.bookmark:hover {
+  color: #08A045;
+}

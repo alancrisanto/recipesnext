@@ -1,0 +1,150 @@
+
+// model Recipe {
+//   id           Int      @id @default(autoincrement())
+//   title        String
+//   description  String
+//   picture      String
+//   foodInfo     String[]
+//   price        Int
+//   calories     Int
+//   carbs        Int
+//   protein      Int
+//   fat          Int
+//   cousine_type String
+//   meal_type    String
+//   serves       Int
+//   total_time   Int
+//   level        Level
+//   category     Category
+//   comments     Comment[]
+//   total_likes  Int
+//   created_at   DateTime @default(now())
+//   authorId     Int
+//   author       User     @relation(fields: [authorId], references: [id])
+//   likes        RecipeLike[]
+//   // set the name of the table
+//   @@map(name: "recipes")
+// }
+
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id              Int      @id @default(autoincrement()) @unique 
+  username        String
+  lastname        String
+  email           String   @unique
+  password        String
+  recipes         Recipe[]
+  comments        Comment[]
+  saved_recipes   SavedRecipe[]
+  likes           RecipeLike[]
+  createdAt       DateTime @default(now()) @map(name: "created_at")
+  // set the name of the table
+  @@map(name: "users")
+}
+
+model Recipe {
+  id           Int      @id @default(autoincrement()) @unique
+  title        String
+  description  String
+  picture      String
+  foodInfo     Json[]
+  cousine_type String
+  meal_type    String
+  level        Level
+  category     Category
+  comments     Comment[]
+  savedRecipes SavedRecipe[]  
+  likes        RecipeLike[]
+  total_likes  Int
+  created_at   DateTime @default(now())
+  authorId     Int
+  author       User     @relation(fields: [authorId], references: [id])
+  // set the name of the table
+  @@map(name: "recipes")
+}
+
+enum Category {
+  Vegetarian
+  Vegan
+  Keto
+  Gourmet
+  Dairy
+  Seafood
+  Salads
+  Bakery
+  FastFood @map(name: "Fast food")
+  Meats
+  Drinks
+  Traditional
+}
+
+enum Level {
+  Beginner
+  Medium
+  Professional
+}
+
+model Comment {
+  id           Int      @id @default(autoincrement()) @unique
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int
+  recipe       Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId     Int
+  comment_text String
+  created_at   DateTime @default(now())
+
+  @@map(name: "comments")
+}
+
+model SavedRecipe {
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+
+  @@id([userId, recipeId])
+  
+}
+
+model RecipeLike {
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId Int
+
+  @@id([userId, recipeId])
+}
+
+
+
+					// if (userFound) {
+					// 	if (credentials?.password) {
+					// 		const isPasswordCorrect = await bcrypt.compare(credentials.password, userFound.password);
+					// 		if (isPasswordCorrect) {
+					// 			return {
+					// 				id: userFound.id,
+					// 				name: userFound.username,
+					// 				email: userFound.email,
+					// 			} as User;
+					// 		} else {
+					// 			throw new Error("Wrong Credentials");
+					// 		}
+					// 	} else {
+					// 		throw new Error("Password not found");
+					// 	}
+					// } else {
+					// 	throw new Error("User not found");
+					// }
