@@ -8,9 +8,15 @@ import { GiHotSpices, GiShotgun } from "react-icons/gi";
 import { FaTypo3 } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function FormRecipe() {
+	const { data: session } = useSession();
+	const router = useRouter();
+
 	type FormData = {
+		author: string;
 		title: string;
 		category: string;
 		mealtype: string;
@@ -21,6 +27,7 @@ function FormRecipe() {
 		fat: number;
 		protein: number;
 		portions: number;
+		coursinetype: string;
 		time: number;
 		image: FileList;
 	};
@@ -52,18 +59,22 @@ function FormRecipe() {
 	};
 
 	const onSubmitForm = handleSubmit(async (data) => {
-		console.log(data.image);
 		const imgUploaded = await uploadImg(data.image[0]);
+		const userid = session?.user ? session.user.id : "";
+
 		try {
 			const res = await fetch("/api/products", {
 				method: "POST",
-				body: JSON.stringify({ ...data, image: imgUploaded }),
+				body: JSON.stringify({ ...data, image: imgUploaded.url, author: parseInt(userid) }),
 				headers: {
 					"content-type": "application/json",
 				},
 			});
-
-			// res.status == 200 && router.push("/auth/login?success=Account has been created");
+			if (res.status == 200) {
+				alert("Recipe Created");
+			}
+			router.refresh();
+			router.push("/");
 		} catch (error) {
 			console.log(error);
 			setErr(error as any);
@@ -125,6 +136,10 @@ function FormRecipe() {
 					<option value="dinner">Dinner</option>
 					<option value="snack">Snack</option>
 				</Form.Select>
+			</Form.Group>
+			<Form.Group className="mb-3" controlId="recipeTitle">
+				<Form.Label>Cousine Type</Form.Label>
+				<Form.Control type="text" placeholder="Bread" {...register("coursinetype")} />
 			</Form.Group>
 
 			<Form.Group className="mb-3" controlId="level">

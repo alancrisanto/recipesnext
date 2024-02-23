@@ -3,29 +3,36 @@ import db from "@/libs/prisma";
 
 export async function GET() {
 	const resp = await db.recipe.findMany();
-	console.log("resp many", resp);
-	return NextResponse.json({
-		message: "hello world",
-	});
+	console.log(resp);
+	return NextResponse.json(resp);
 }
 
 export async function POST(request: NextRequest) {
 	const fields = await request.json();
-	console.log("api data,json", fields);
-	// console.log("api image", fields.image[0]);
+	const foodInfo = {
+		fat: fields.fat,
+		calories: fields.calories,
+		protein: fields.protein,
+		portions: fields.portions,
+		time: fields.time,
+	};
 
-	// const resp = await db.recipe.create({
-	// 	data: {
-	// 		title: fields.title,
-	// 		description: fields.description,
-	// 		picture: fields.picture[0],
-	// 		foodInfo: fields.foodInfo,
-	// 		cousine_type: fields.cousinetype,
-	// 		meal_type: fields.mealtype,
-	// 		level: fields.level,
-	// 		category: fields.category,
-	// 	},
-	// });
+	const resp = await db.recipe.create({
+		data: {
+			title: fields.title,
+			description: fields.description,
+			picture: fields.image,
+			foodInfo: [foodInfo],
+			cousine_type: fields.coursinetype,
+			meal_type: fields.mealtype,
+			level: fields.level,
+			category: fields.category,
+			author: {
+				connect: { id: fields.author },
+			},
+		},
+	});
+
 	return NextResponse.json({
 		message: "creating product",
 	});

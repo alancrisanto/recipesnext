@@ -36,6 +36,5 @@ export async function POST(request: any) {
 	});
 
 	const { password: _, ...user } = newUser;
-	console.log(data);
 	return NextResponse.json(user);
 }

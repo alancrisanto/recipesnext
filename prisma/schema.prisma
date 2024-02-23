@@ -33,46 +33,20 @@ model Recipe {
   picture      String
   foodInfo     Json[]
   cousine_type String
-  meal_type    mealType
-  level        Level
-  category     Category
+  meal_type    String
+  level        String
+  category     String
   comments     Comment[]
   savedRecipes SavedRecipe[]  
-  likes        RecipeLike[]
-  total_likes  Int
+  likes        RecipeLike[] 
+  total_likes  Int @default(0)
   created_at   DateTime @default(now())
+  author       User @relation(fields: [authorId], references: [id])
   authorId     Int
-  author       User     @relation(fields: [authorId], references: [id])
   // set the name of the table
   @@map(name: "recipes")
 }
 
-enum Category {
-  Vegetarian
-  Vegan
-  Keto
-  Gourmet
-  Dairy
-  Seafood
-  Salads
-  Bakery
-  FastFood @map(name: "Fast food")
-  Meats
-  Drinks
-  Traditional
-}
-
-enum mealType {
-  Breakfast
-  Lunch
-  Dinner
-}
-
-enum Level {
-  Beginner
-  Medium
-  Professional
-}
 
 model Comment {
   id           Int      @id @default(autoincrement()) @unique
