@@ -5,7 +5,9 @@ import RatingComponent from "../rating/rating";
 import Link from "next/link";
 
 async function getData() {
-	const res = await fetch("http://localhost:3000/api/products", { next: { revalidate: 3600 } });
+	const res = await fetch("https://recipesnext-8hciky692-alancrisanto.vercel.app/api/products", {
+		next: { revalidate: 3600 },
+	});
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
 		throw new Error("Failed to fetch data");
