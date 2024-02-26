@@ -10,7 +10,7 @@ interface User {
 	email: string;
 }
 
-const authOptions = {
+export const authOptions = {
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -52,22 +52,8 @@ const authOptions = {
 		signIn: "/auth/login",
 	},
 	callbacks: {
-		async jwt({ token, user }: { token: any; user: any }) {
-			if (user?.id) {
-				token.user = { ...token.user, id: user.id };
-			}
-			if (user?.name) {
-				token.user = { ...token.user, name: user.name };
-			}
-			if (user?.email) {
-				token.user = { ...token.user, email: user.email };
-			}
-			return token;
-		},
 		async session({ session, token }: { session: any; token: any }) {
-			session.user = { ...session.user, id: token.user.id };
-			session.user = { ...session.user, name: token.user.name };
-			session.user = { ...session.user, email: token.user.email };
+			session.user.id = token.sub;
 			return session;
 		},
 	},

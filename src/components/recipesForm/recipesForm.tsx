@@ -1,5 +1,3 @@
-"use client";
-
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -13,6 +11,7 @@ import { useRouter } from "next/navigation";
 
 function FormRecipe() {
 	const { data: session } = useSession();
+
 	const router = useRouter();
 
 	type FormData = {
@@ -65,7 +64,7 @@ function FormRecipe() {
 		try {
 			const res = await fetch("/api/products", {
 				method: "POST",
-				body: JSON.stringify({ ...data, image: imgUploaded.url, author: parseInt(userid) }),
+				body: JSON.stringify({ ...data, image: imgUploaded.url, author: userid }),
 				headers: {
 					"content-type": "application/json",
 				},

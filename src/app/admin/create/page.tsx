@@ -1,3 +1,4 @@
+"use client";
 import FormRecipe from "@/components/recipesForm/recipesForm";
 import styles from "./page.module.css";
 

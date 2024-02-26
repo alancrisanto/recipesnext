@@ -3,7 +3,6 @@ import db from "@/libs/prisma";
 
 export async function GET() {
 	const resp = await db.recipe.findMany();
-	console.log(resp);
 	return NextResponse.json(resp);
 }
 
@@ -28,7 +27,7 @@ export async function POST(request: NextRequest) {
 			level: fields.level,
 			category: fields.category,
 			author: {
-				connect: { id: fields.author },
+				connect: { id: parseInt(fields.author) },
 			},
 		},
 	});
