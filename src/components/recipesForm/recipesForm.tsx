@@ -39,16 +39,15 @@ function FormRecipe() {
 
 	const [err, setErr] = useState(false);
 
-	const uploadImg = async (img: File) => {
+	const uploadImg = async (file: File) => {
 		try {
 			const formData = new FormData();
-			formData.append("image", img);
+			formData.append("file", file);
 
 			const imgRes = await fetch("/api/imgupload", {
 				method: "POST",
 				body: formData,
 			});
-
 			return await imgRes.json();
 		} catch (error) {
 			console.log(error);
