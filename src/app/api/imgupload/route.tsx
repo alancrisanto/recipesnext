@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
 	const bytes = await image.arrayBuffer();
 	const buffer = Buffer.from(bytes);
 
+	// Create a path for the image to upload to cloudinary
 	const filePath = path.join(process.cwd(), "public", image.name);
 
 	await writeFile(filePath, buffer);
