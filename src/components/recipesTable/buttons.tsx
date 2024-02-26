@@ -14,7 +14,8 @@ export function CreateRecipe() {
 
 export function UpdateRecipe({ id }: { id: string }) {
 	return (
-		<Link href={`/dashboard/invoices/${id}/edit`} className="border p-2">
+		// <Link href={`/dashboard/invoices/${id}/edit`} className="border p-2">
+		<Link href="#" className="border p-2">
 			<GoPencil />
 		</Link>
 	);
