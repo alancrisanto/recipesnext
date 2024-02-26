@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import { NextRequest, NextResponse } from "next/server";
+import { writeFile } from "fs/promises";
+import path from "path";
 
 export async function POST(request: NextRequest) {
 	cloudinary.config({
@@ -9,17 +11,23 @@ export async function POST(request: NextRequest) {
 	});
 
 	const data = await request.formData();
-	const file = data.get("image");
-	if (file instanceof File) {
-		const pathimg = "D:/Code/Portfolio/recipes/public/" + file.name;
+	const image = data.get("file") as File;
 
-		return cloudinary.uploader
-			.upload(pathimg)
-			.then((result) => {
-				return NextResponse.json({
-					url: result.url,
-				});
-			})
-			.catch((error) => console.log(error));
+	if (!image) {
+		return NextResponse.json("No image selected", { status: 400 });
 	}
+
+	const bytes = await image.arrayBuffer();
+	const buffer = Buffer.from(bytes);
+
+	const filePath = path.join(process.cwd(), "public", image.name);
+
+	await writeFile(filePath, buffer);
+
+	const response = await cloudinary.uploader.upload(filePath);
+
+	return NextResponse.json({
+		message: "Image uploaded",
+		url: response.secure_url,
+	});
 }
