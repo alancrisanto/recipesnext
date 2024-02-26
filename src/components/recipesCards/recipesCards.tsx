@@ -5,7 +5,7 @@ import RatingComponent from "../rating/rating";
 import Link from "next/link";
 
 async function getData() {
-	const res = await fetch("https://recipesnext-8hciky692-alancrisanto.vercel.app/api/products", {
+	const res = await fetch("https://recipesnext-mu.vercel.app/api/products", {
 		next: { revalidate: 3600 },
 	});
 	if (!res.ok) {
