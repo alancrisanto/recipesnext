@@ -14,7 +14,6 @@ async function getData() {
 	}
 	return res.json();
 }
-// { recImg, title, desc }: { recImg: string; title: string; desc: string }
 async function RecipesCards() {
 	const recipes = await getData();
 
